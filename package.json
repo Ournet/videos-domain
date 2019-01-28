@@ -1,0 +1,51 @@
+{
+  "name": "@ournet/videos-domain",
+  "version": "0.0.1",
+  "description": "Ournet videos domain module",
+  "main": "./lib/index.js",
+  "types": "./lib/index.d.ts",
+  "scripts": {
+    "pretest": "npm run clean && npm run tsc",
+    "test": "ava --no-cache --verbose lib/**/*.test.js",
+    "posttest": "npm run clean-test-code",
+    "tsc": "tsc",
+    "tscw": "tsc -w",
+    "preversion": "npm run tsc",
+    "postversion": "git push --follow-tags",
+    "prepublishOnly": "npm run tsc && npm run clean-test-code",
+    "clean": "rimraf ./lib",
+    "clean-test-code": "rimraf ./lib/**/*.test.js && rimraf ./lib/**/*.test.d.ts"
+  },
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ournet/videos-domain.git"
+  },
+  "keywords": [
+    "videos",
+    "videos-domain",
+    "domain",
+    "ournet"
+  ],
+  "author": "Dumitru Cantea",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ournet/videos-domain/issues"
+  },
+  "homepage": "https://github.com/ournet/videos-domain#readme",
+  "devDependencies": {
+    "@types/joi": "^14.0.0",
+    "@types/ms": "^0.7.30",
+    "@types/node": "10.12.2",
+    "ava": "^0.25.0",
+    "rimraf": "^2.6.2",
+    "typescript": "3.1.6"
+  },
+  "dependencies": {
+    "@ournet/domain": "^0.3.3",
+    "joi": "^14.0.3",
+    "ms": "^2.1.1"
+  }
+}
