@@ -1,10 +1,13 @@
-import { md5, uniq } from "@ournet/domain";
+import { md5, uniq, normalizeUrl } from "@ournet/domain";
 import { VideoSourceType, VideoBuildData, Video } from "./video";
 import ms = require("ms");
 import { VIDEO_MS_LIVETIME } from "./config";
 
 export class VideoHelper {
     static createId({ sourceId, sourceType }: { sourceType: VideoSourceType, sourceId: string }) {
+        if (/^https?:/.test(sourceId)) {
+            sourceId = normalizeUrl(sourceId);
+        }
         return md5(`${sourceType.trim()}-${sourceId}`);
     }
 

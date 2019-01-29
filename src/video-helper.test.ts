@@ -9,6 +9,14 @@ test('createId', t => {
     t.true(typeof VideoHelper.createId({ sourceId: '1', sourceType: 'IFRAME' }) === 'string');
 })
 
+test('createId normalize url', t => {
+    const url1 = VideoHelper.createId({ sourceId: 'https://www.one.one', sourceType: 'IFRAME' });
+    const url2 = VideoHelper.createId({ sourceId: 'http://one.one', sourceType: 'IFRAME' });
+    const url3 = VideoHelper.createId({ sourceId: 'http://www.one.one', sourceType: 'IFRAME' });
+    t.is(url1, url2);
+    t.is(url1, url3);
+})
+
 test('expiresAt', t => {
 
     const date = new Date();
